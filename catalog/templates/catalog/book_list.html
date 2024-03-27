@@ -1,0 +1,74 @@
+{% extends "catalog/base_generic.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Book Filter{% endblock %}
+
+{% block active-books %}active{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-row justify-content-center gap-5">
+        <div class="d-flex flex-column mt-3 rounded-4 p-4 bg-primary">
+            <form action="" method="post">
+                <h3>Filter</h3>
+                <hr>
+                <div class="d-flex flex-column gap-3">
+                    {% csrf_token %}
+                    <div class="d-flex flex-column gap-1">
+                        {{ filter_form.genre|add_class:"form-control filter-form-inputs border-0 input-shadow"|append_attr:'placeholder=Genre' }}
+                        {{ filter_form.author|add_class:"form-control filter-form-inputs border-0 input-shadow"|append_attr:'placeholder=Author' }}
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center align-items-center flex-column gap-3">
+                    <input class="form-control bg-white border-0 apply-filter mt-4 input-shadow" type="submit" value="Apply">
+                </div>
+            </form>
+        </div>
+        <div class="d-flex flex-column gap-3">
+            <div class="mt-3 rounded-4 p-3 bg-primary">
+                <form method="post" action="" class="d-flex flex-row gap-2">
+                    {% csrf_token %}
+                    {{ sort_form.order|add_class:"form-control wdh" }}
+                    <input type="submit" value="Sort" class="form-control">
+                </form>
+            </div>
+            <div>
+                {% if page_obj %}
+                    <div class="d-flex flex-column">
+                        {% for book in page_obj %}
+                            <div class="d-flex flex-column">
+                                <a class="link text-decoration-none fs-5" href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                                <a class="link-secondary text-decoration-none" href="{{ book.author.get_absolute_url }}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    {% block pagination %}
+                        {% if is_paginated %}
+                            <nav aria-label="Page navigation example">
+                              <ul class="pagination">
+                                  {% if page_obj.has_previous %}
+                                      <li class="page-item"><a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Prev</a></li>
+                                  {% else %}
+                                      <li class="page-item disabled"><a class="page-link">Prev</a></li>
+                                  {% endif %}
+                                  {% for page in page_count %}
+                                      <li class="page-item"><a class="page-link" href="{{ request.path }}?page={{ page }}">{{ page }}</a></li>
+                                  {% endfor %}
+                                  {% if page_obj.has_next %}
+                                      <li class="page-item"><a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next</a></li>
+                                  {% else %}
+                                      <li class="page-item disabled"><a class="page-link">Next</a></li>
+                                  {% endif %}
+                              </ul>
+                            </nav>
+                        {% endif %}
+                    {% endblock %}
+                {% else %}
+                    <p class="fs-5 d-flex">There are no books in the library.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "registration/registration_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <div class="d-flex flex-column align-items-center rounded-2 shadow p-2">
+        <form action="" method="post" class="d-flex flex-column align-items-center gap-3 p-3">
+            {% csrf_token %}
+            <h3 class="arial-serif" style="cursor: default">Good {{ current }}!</h3>
+            <div class="d-flex flex-column bg-white rounded-2">
+                <label>{{ form.username|add_class:"form-control"|append_attr:"placeholder=Username" }}</label>
+            </div>
+            <div class="d-flex flex-column bg-white rounded-2">
+                <label>{{ form.password|add_class:"form-control"|append_attr:"placeholder=Password" }}</label>
+            </div>
+            <button class="btn btn-primary mb-2 mt-4 rounded-2 fs-5 w-50" type="submit">Log In</button>
+        </form>
+        <div class="d-flex flex-column rounded-end error-block-out" style="width: 18vw; height: 0vh">
+            <div class="d-flex flex-column rounded-end error-block-in" style="height: 0">
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <hr>
+                        <div class="d-flex flex-row justify-content-center">
+                            <h6 class="mt-1">Your account doesn't have access to this page.</h6>
+                        </div>
+                    {% else %}
+                        <hr>
+                        <div class="d-flex flex-row justify-content-center">
+                            <h6 class="mt-1">Please login to see this page.</h6>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% if form.errors %}
+                    <hr>
+                    <div class="d-flex flex-row justify-content-center">
+                        <h6 class="mt-1">Your username and password didn't match.</h6>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        err1 = document.querySelector('.error-block-out');
+        err2 = document.querySelector('.error-block-in');
+
+        if (err2.children.length > 0) {
+            err1.style.height = '10vh';
+        }
+    </script>
+{% endblock %}

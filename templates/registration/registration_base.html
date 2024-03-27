@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% load sass_tags %}
+
+    <link rel="stylesheet" href="{% sass_src 'theme.scss' %}"/>
+</head>
+<body class="">
+    <div class="d-flex flex-row justify-content-center">
+        <div class="d-flex flex-column justify-content-center" style="height: 100vh">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

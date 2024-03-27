@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    {% load sass_tags %}
+
+    <link rel="stylesheet" href="{% sass_src 'theme.scss' %}"/>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="flex-row">
+          {% block sidebar %}
+              <nav class="navbar navbar-expand-lg bg-primary rounded-bottom">
+                  <div class="container-fluid">
+                      <a class="navbar-brand fenix-serif fs-3" href="{% url 'index' %}">LocalLibrary</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                          <div class="navbar-nav">
+                              <a class="nav-link arial-serif {% block active-books %}{% endblock %}" href="{% url 'books' %}">Books</a>
+                              <a class="nav-link arial-serif {% block active-authors %}{% endblock %}" href="{% url 'authors' %}">Authors</a>
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-end align-items-center gap-2">
+                          {% if user.is_authenticated %}
+                              <div class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle fs-5" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      {{ user.get_username }}
+                                  </a>
+                                  <div class="dropdown-menu rounded-3 pt-0 pb-0" aria-labelledby="navbarScrollingDropdown">
+                                      <a class="dropdown-item dropdown-item-start pt-2 pb-2" href="{% url 'profile' user.pk %}">Profile</a>
+                                      <hr class="dropdown-divider mt-0 mb-0">
+                                      <a class="dropdown-item dropdown-item-end pt-2 pb-2" href="{% url 'logout' %}">Logout</a>
+                                  </div>
+                              </div>
+                          {% else %}
+                              <a href="{% url 'login' %}" class="text-decoration-none fenix-serif fs-5 text-dark m-2">Log In</a>
+                          {% endif %}
+                      </div>
+                  </div>
+              </nav>
+         {% endblock %}
+      </div>
+      <div class="d-flex flex-co    lumn align-items-center">
+          {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'bootstrap-5.2.3/dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

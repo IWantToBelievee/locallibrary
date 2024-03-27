@@ -1,0 +1,24 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}Author List{% endblock %}
+
+{% block active-authors %}active{% endblock %}
+
+{% block content %}
+    <h1>Author List</h1>
+    <hr>
+    {% if author_list %}
+        <div class="d-flex flex-column">
+            {% for author in author_list %}
+                <div>
+                    <a class="link-primary text-decoration-none fs-6" href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a>
+                </div>
+                {% if author != author_list_last %}
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>There are no authors in the list.</p>
+    {% endif %}
+{% endblock content %}

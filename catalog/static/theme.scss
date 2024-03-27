@@ -1,0 +1,225 @@
+
+$primary: rgb(182, 225, 145);
+$text-primary: rgb(148, 190, 109);
+$link-color: rgb(122, 181, 68);
+
+
+@import "./bootstrap-5.2.3/scss/bootstrap";
+@import "./bootstrap-5.2.3/scss/utilities";
+@import "./bootstrap-5.2.3/scss/functions";
+@import "./bootstrap-5.2.3/scss/variables";
+@import "./bootstrap-5.2.3/scss/maps";
+@import "./bootstrap-5.2.3/scss/mixins";
+
+$box-shadow: 0 0.3rem 1rem rgba(black, .15);
+$box-shadow-xs: 0 0.3rem 1rem rgba(black, .15);
+
+$utilities: map-merge (
+    $utilities:
+    (
+        "shadow": (
+          property: box-shadow,
+          class: shadow,
+          values: (
+              null: $box-shadow,
+              sm: $box-shadow-sm,
+              xs: $box-shadow-xs,
+              lg: $box-shadow-lg,
+              none: none,
+          )
+        ),
+    )
+);
+
+@import "./bootstrap-5.2.3/scss/utilities/api";
+
+/*-----------------Fonts------------------*/
+
+.fenix-serif { //
+    font-family: Fenix, serif;
+}
+
+.arial-serif { //
+    font-family: Arial, sans-serif;
+}
+
+.text-primary { //
+    color: $text-primary;
+}
+
+/*------------------- width -------------------*/
+
+.w-10 {
+    width: 10%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+/*------------------Links---------------------*/
+
+.login-text {
+    padding: 8px;
+    color: #65abde;
+    transition: color 0.1s;
+}
+
+.login-text:hover {
+    color: #7fc7ff;
+}
+
+/*----------------BG------------------*/
+
+.bg-blue {
+    background: rgba(219, 239, 255, 0.69);
+}
+
+.bg-white-hover {
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.bg-white-hover:hover {
+    background-color: #f3f3f3;
+}
+
+.dropdown-item-start {
+    border-radius: 7px 7px 0 0;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item-start:hover {
+    background-color: #f3f3f3;
+}
+
+.dropdown-item-end {
+    border-radius: 0 0 7px 7px;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item-end:hover {
+    background-color: #f3f3f3;
+}
+
+body {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.filter-container {
+    margin-left: 10px;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.all-inp {
+    text-align: center;
+    width: 80px;
+}
+
+.apply-container {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.apply-filter {
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+}
+
+/*--------------------Sidebar--------------------*/
+
+.container-sidebar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-title {
+    font-size: 26px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar-font {
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+}
+
+
+/*----------------Books Filter---------------*/
+
+.date-filter-title {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.date-filter-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+
+.filter-form-inputs {
+    text-align: center;
+    margin-bottom: 5px;
+    width: 150px;
+}
+
+.apply-filter {
+    width: 90px;
+    height: 35px;
+}
+
+.input-shadow {
+    box-shadow: 0 0 12px #bcddf1;
+}
+
+.wdh {
+    width: 230px;
+}
+
+
+/*-------------------- BUTTONS -------------------*/
+
+.active-bg {
+    background-color: white;
+}
+
+.active-bg:focus {
+    background-color: rgba(248, 193, 207, 0.5);
+}
+
+
+// LOGIN FORM
+
+.login-border {
+    border-width: 2px;
+
+}

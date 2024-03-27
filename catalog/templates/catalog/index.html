@@ -1,0 +1,39 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block active-index %}active{% endblock %}
+
+{% block content %}
+    <p class="fs-5 mt-3 w-50" align="center">Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+    <div class="d-flex flex-column">
+        <h3 class="mt-4" align="center">Details of the website</h3>
+
+        <div class="d-flex flex-row justify-content-center gap-3 p-3 rounded-2">
+            <div class="card d-flex flex-column border-primary w-25">
+                <img src="#" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Books</h5>
+                    <p class="card-text">There are currently <strong>{{ num_books }} books</strong> on the site!</p>
+                    <a href="{% url 'books' %}" class="btn btn-primary">Go to the books list</a>
+                </div>
+            </div>
+            <div class="card d-flex flex-column border-primary w-25">
+                <img src="#" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Authors</h5>
+                    <p class="card-text">There are currently <strong>{{ num_authors }} authors</strong> on the site!</p>
+                    <a href="{% url 'authors' %}" class="btn btn-primary">Go to the authors list</a>
+                </div>
+            </div>
+            <div class="card d-flex flex-column border-primary w-25">
+                <img src="#" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Copies</h5>
+                    <p class="card-text">There are currently <strong>{{ num_books }} copies</strong> of books on the site!</p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login to borrow it</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
